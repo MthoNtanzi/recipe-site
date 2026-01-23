@@ -10,7 +10,7 @@ import {
 const HomePage =()=> {
     return(
         <main>
-            <header className="HeroSection">
+            <header className={styles.HeroSection}>
                 <h1>Savoury Recipes</h1>
                 <p>Discover amazing recipes from around the world</p>
 
@@ -21,10 +21,14 @@ const HomePage =()=> {
             </header>
 
             {/* Recipes */}
-            <div className="recipes">
-                <div className="categories">
-
+            <div className={styles.recipes}>
+                <div className={styles.categories}>
+                    <button className={styles.foodCategories}>Beef</button>
+                    <button className={styles.foodCategories}>Chicken</button>
+                    <button className={styles.foodCategories}>Pasta</button>
+                    <button className={styles.foodCategories}>Pizza</button>
                 </div>
+                {/* Recipe Cards Go here */}
             </div>
         </main>
     )
