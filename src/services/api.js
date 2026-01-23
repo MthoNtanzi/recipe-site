@@ -1,0 +1,79 @@
+const recipeApi = `https://dummyjson.com/recipes`;
+
+const fetchAllRecipes = async () => {
+    try {
+        const response = await fetch(recipeApi);
+        if(!response.ok){
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log(result);
+        return result.recipes;
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+        throw error;
+    }
+}
+
+// fetch single recipe
+export const fetchRecipeById = async (id) => {
+    try{
+        const response = await fetch(`${recipeApi}/${id}`);
+        if(!response.ok){
+            throw new Error(`Response Status: ${response.status}`);
+        }
+        return await response.json();
+    }catch{
+        console.error(`Error fetching recipe ${id}`);
+        throw error;
+    }
+}
+
+// search recipes
+export const searchRecipes = async (query) => {
+    try {
+        const response = await fetch(`${recipeApi}/search?q=${query}`);
+        if(!response.ok){
+            throw new Error(`Response Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.recipes;
+    } catch (error) {
+        console.error(`Error searching recipes: ${error}`);
+        throw error
+    }
+}
+
+export const fetchRecipesByTag = async (tag) => {
+    try {
+        const response = await fetch(`${recipeApi}/tag/${tag}`);
+        if(!response.ok){
+            throw new Error(`Response Status: ${error}`);
+        }
+        const data = await response.json();
+        return data.recipes;
+    } catch (error) {
+        console.error(`Error fetching ${tag} recipes: ${error}`);
+        throw error;
+    }
+}
+
+// Get recipes by meal type (breakfast, lunch, dinner, snack, dessert)
+export const fetchRecipesByMealType = async (mealType) => {
+  try {
+    const response = await fetch(BASE_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    // Filter recipes that include the meal type
+    return data.recipes.filter(recipe => 
+      recipe.mealType && recipe.mealType.includes(mealType)
+    );
+  } catch (error) {
+    console.error(`Error fetching ${mealType} recipes:`, error);
+    throw error;
+  }
+};
