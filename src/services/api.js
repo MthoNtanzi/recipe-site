@@ -1,6 +1,6 @@
 const recipeApi = `https://dummyjson.com/recipes`;
 
-const fetchAllRecipes = async () => {
+export const fetchAllRecipes = async () => {
     try {
         const response = await fetch(recipeApi);
         if(!response.ok){

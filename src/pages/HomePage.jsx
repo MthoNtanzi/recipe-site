@@ -1,12 +1,26 @@
 import { useState } from "react";
-import getAPI from "../services/api";
+import styles from '../assets/styles/home.module.css'
+import {
+    fetchAllRecipes,
+    searchRecipes,
+    fetchRecipesByTag,
+    fetchRecipesByMealType
+} from "../services/api";
 
-const Home =()=> {
+const HomePage =()=> {
     return(
-        <main className="">
-            <div className="HeroSection">
-                Savoury Recipes
-            </div>
+        <main>
+            <header className="HeroSection">
+                <h1>Savoury Recipes</h1>
+                <p>Discover amazing recipes from around the world</p>
+
+                <input type="text" 
+                    placeholder="Search recipe"
+                    className="search-input"
+                />
+            </header>
+
+            {/* Recipes */}
             <div className="recipes">
                 <div className="categories">
 
@@ -16,4 +30,4 @@ const Home =()=> {
     )
 }
 
-export default Home;
+export default HomePage;

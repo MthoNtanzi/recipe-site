@@ -1,0 +1,57 @@
+header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: hidden;
+    padding: 40px;
+    color: #fff;
+    font-size: 1.6em;
+    text-shadow: 0px 3px 9px #000000;
+}
+
+header h1{
+    padding: 1px;
+}
+
+header p{
+    padding: 0;
+}
+
+header::before{
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: -1;
+
+    background-image: url('../img/banner_img.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    filter: blur(5px); 
+    transform: scale(1.1);
+}
+
+header input{
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.479);
+    color: #fff;
+
+    font-size: 1.3em;
+    width: 350px;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+header input::placeholder {
+  color: #929292;
+  opacity: 1; 
+}
