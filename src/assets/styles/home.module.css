@@ -83,24 +83,3 @@ header input::placeholder {
     gap: 20px;
     justify-content: center;
 }
-
-.foodCard{
-    background-color: #f7f7f7;
-    padding: 1.2em;
-    width: 250px;
-    min-height: 16em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.foodTitle{
-    padding: 0;
-    margin: 0;
-}
-
-.recipeThumbnail{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
