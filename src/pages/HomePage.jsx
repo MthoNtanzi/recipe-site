@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from '../assets/styles/home.module.css'
+import foodImg from '../assets/img/food_example.jpg'
 import {
     fetchAllRecipes,
     searchRecipes,
@@ -29,8 +30,30 @@ const HomePage =()=> {
                     <button className={styles.foodCategories}>Pizza</button>
                 </div>
                 {/* Recipe Cards Go here */}
+                <div className={styles.foodCardContainer}>
+                    {Array.from({ length: 10 }).map((_, index) => (
+                        <RecipeCard key={index} />
+                    ))}
+
+                </div>
+
+                
             </div>
         </main>
+    )
+}
+
+function RecipeCard() {
+    return (
+        <div className={styles.foodCard}>
+            {/* food image */}
+            <h1 className={styles.foodTitle}>Meal Name</h1>
+            <img
+                src={foodImg}
+                className={styles.recipeThumbnail}
+                alt="Food Item" />
+            <p>Cooking Time: 20mins</p>
+        </div>
     )
 }
 
