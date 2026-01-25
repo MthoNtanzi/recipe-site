@@ -1,5 +1,9 @@
 .foodCard{
-    background-color: #f8f8f8ea;
+    
+    box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.71);
+    -webkit-box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.71);
+    -moz-box-shadow: 2px 2px 8px -2px rgba(0,0,0,0.71);
+
     padding: 1.2em;
     width: 250px;
     min-height: 16em;
@@ -9,9 +13,18 @@
     border-radius: 12px;
 }
 
+.foodCard:hover{
+    background-color: #0a61201c;
+    transition: ease-in 1.2s;
+}
+
 .foodTitle{
-    padding: 0;
+    padding:0  0 0.5em 0;
     margin: 0;
+    font-size: 1.6em;
+    white-space: nowrap;    /* Keeps text on a single line */
+    overflow: hidden;       /* Hides the text that goes past the width */
+    text-overflow: ellipsis;
 }
 
 .recipeThumbnail{
@@ -19,6 +32,11 @@
     height: auto;
     object-fit: cover;
     border-radius: 6px;
+    margin-bottom: 0.2em;
+}
+
+.foodCard p{
+    margin: 0.5em;
 }
 
 .fullRecipeBtn{
