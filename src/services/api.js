@@ -24,8 +24,8 @@ export const fetchRecipeById = async (id) => {
             throw new Error(`Response Status: ${response.status}`);
         }
         return await response.json();
-    }catch{
-        console.error(`Error fetching recipe ${id}`);
+    }catch(error){
+        console.error(`Error fetching recipe ${id}: `, error);
         throw error;
     }
 }
@@ -49,7 +49,7 @@ export const fetchRecipesByTag = async (tag) => {
     try {
         const response = await fetch(`${recipeApi}/tag/${tag}`);
         if(!response.ok){
-            throw new Error(`Response Status: ${error}`);
+            throw new Error(`Response Status: ${response.status}`);
         }
         const data = await response.json();
         return data.recipes;
@@ -62,7 +62,7 @@ export const fetchRecipesByTag = async (tag) => {
 // Get recipes by meal type (breakfast, lunch, dinner, snack, dessert)
 export const fetchRecipesByMealType = async (mealType) => {
   try {
-    const response = await fetch(BASE_URL);
+    const response = await fetch(recipeApi);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }

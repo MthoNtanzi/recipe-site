@@ -47,6 +47,8 @@
     background-color: #000000;
     padding-block: 5px;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
 .fullRecipeBtn:hover{

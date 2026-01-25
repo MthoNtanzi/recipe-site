@@ -1,4 +1,5 @@
 import styles from '../assets/styles/recipeCard.module.css';
+import { Link } from 'react-router-dom';
 
 export function RecipeCard({ recipe }) {
     const totalTime = recipe.prepTimeMinutes + recipe.cookTimeMinutes;
@@ -16,7 +17,7 @@ export function RecipeCard({ recipe }) {
             <p className={styles.time}>Cooking time: {totalTime} mins</p>
             <p className={styles.cuisine}>{recipe.cuisine}</p>
             <p className={styles.difficulty}>{recipe.difficulty}</p>
-            <button className={styles.fullRecipeBtn}>See Full Recipe</button>
+            <Link to={`/recipe/${recipe.id}`} className={styles.fullRecipeBtn}>See Full Recipe</Link>
         </div>
     )
 }
