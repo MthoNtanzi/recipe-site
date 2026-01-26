@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from '../assets/styles/home.module.css'
 import RecipeCard from "../Components/RecipeCard";
+import { Loader } from "../Components/Loader";
 import { fetchAllRecipes, getAllTags, searchRecipes } from "../services/api";
 
 const HomePage =()=> {
@@ -100,7 +101,7 @@ const HomePage =()=> {
 
             {/* Recipes */}
             {
-                searchLoading ? <div className={styles.loading}><span class="loader"></span>Loading recipes...</div> :
+                searchLoading ? <Loader/> :
                 
             
             <div className={styles.recipes}>

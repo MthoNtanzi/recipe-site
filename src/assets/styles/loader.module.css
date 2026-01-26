@@ -1,0 +1,39 @@
+.loading {
+    display: flex;
+    min-height: 80dvh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.panSVGBorder {
+    position: relative;
+    display: inline-flex;
+    padding: 50px;
+}
+
+.panSVGBorder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px dashed #0a6120;
+    border-radius: 50%;
+    animation: spin 1.8s linear infinite;
+}
+
+.panSVG {
+    width: 150px;
+    height: 150px;
+    display: block;
+    z-index: 1; /* sits above rotating border */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.loaderText{
+    font-size: x-large;
+    font-weight: 600;
+}

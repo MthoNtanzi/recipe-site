@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../assets/styles/recipePage.module.css'
 import { fetchRecipeById } from '../services/api';
+import { Loader } from '../Components/Loader';
 
 import cookSVG from '../assets/img/cook.svg';
 import foodSVG from '../assets/img/food.svg';
@@ -34,7 +35,7 @@ export const RecipePage = () => {
         }
     }, [id]);
 
-    if (loading) return <div className={styles.loading}>Loading recipe...</div>;
+    if (loading) return <Loader />;
     if (error) return <div className={styles.error}>Error: {error}</div>;
     if (!recipe) return <div className={styles.notFound}>Recipe not found</div>;
 
