@@ -60,7 +60,7 @@ export const RecipePage = () => {
                         <img src={knifeSVG}
                             className={styles.icon}/>
                             <div className={styles.labelContainer}>
-                                <p className={styles.label}>Prep time:</p>
+                                <p className={styles.label}>Prep time</p>
                                 <p className={styles.labelDesc}>{recipe.prepTimeMinutes}</p>
                             </div>
                     </div>
@@ -69,7 +69,7 @@ export const RecipePage = () => {
                         <img src={cookSVG}
                             className={styles.icon}/>
                             <div className={styles.labelContainer}>
-                                <p className={styles.label}>Cook time: </p>
+                                <p className={styles.label}>Cook time</p>
                                 <p className={styles.labelDesc}>{recipe.cookTimeMinutes}</p>
                             </div>
                     </div>
@@ -78,7 +78,7 @@ export const RecipePage = () => {
                         <img src={peopleSVG}
                             className={styles.icon}/>
                             <div className={styles.labelContainer}>
-                                <p className={styles.label}>Serving: </p>
+                                <p className={styles.label}>Serving</p>
                                 <p className={styles.labelDesc}>{recipe.servings}</p>
                             </div>
                     </div>

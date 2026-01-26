@@ -15,7 +15,7 @@
 
 .foodCard:hover{
     background-color: #0a61201c;
-    transition: ease-in 1.2s;
+    transition: ease-in 0.4s;
 }
 
 .foodTitle{

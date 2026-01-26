@@ -59,6 +59,27 @@ export const fetchRecipesByTag = async (tag) => {
     }
 }
 
+export const getAllTags = async () => {
+    try {
+        const response = await fetch(recipeApi);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // Extract all tags from all recipes
+        const allTags = data.recipes.flatMap(recipe => recipe.tags || []);
+        
+        // Remove duplicates and sort alphabetically
+        const uniqueTags = [...new Set(allTags)].sort();
+        
+        return uniqueTags;
+    } catch (error) {
+        console.error('Error fetching tags:', error);
+        throw error;
+    }
+};
+
 // Get recipes by meal type (breakfast, lunch, dinner, snack, dessert)
 export const fetchRecipesByMealType = async (mealType) => {
   try {

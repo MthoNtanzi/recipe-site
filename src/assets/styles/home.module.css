@@ -44,7 +44,7 @@ header::before{
     transform: scale(1.1);
 }
 
-header input{
+.searchInput{
     border: none;
     outline: none;
     background-color: rgba(0, 0, 0, 0.479);
@@ -56,17 +56,17 @@ header input{
     border-radius: 30px;
 }
 
-header input::placeholder {
+.searchInput::placeholder {
   color: #929292;
   opacity: 1; 
 }
 
-.categories{
+.tags{
     padding: 1.5em;
     border-bottom: 1px solid black;
 }
 
-.foodCategories{
+.foodTags{
     margin-inline: 0.8em;
     background-color: #fff;
     outline: none;
@@ -75,9 +75,11 @@ header input::placeholder {
     padding: 0.4em 1.4em;
 }
 
-/* .foodCategories:hover{
-    
-} */
+.foodTags:hover{
+    background-color: #0a6120;
+    cursor: pointer;
+    transition: ease 0.5s;
+}
 
 /* Food Card */
 .foodCardContainer{
