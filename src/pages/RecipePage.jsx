@@ -3,6 +3,11 @@ import { useParams } from 'react-router-dom';
 import styles from '../assets/styles/recipePage.module.css'
 import { fetchRecipeById } from '../services/api';
 
+import cookSVG from '../assets/img/cook.svg';
+import foodSVG from '../assets/img/food.svg';
+import knifeSVG from '../assets/img/knife.svg';
+import starSVG from '../assets/img/star.svg';
+
 export const RecipePage = () => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
@@ -33,15 +38,52 @@ export const RecipePage = () => {
 
     return (
         <div className={styles.recipeBody}>
-            <header>
+            <header className={styles.recipeHeader}>
                 <p>Let's Cook</p>
-                <p className={styles.foodTitle}>{recipe.name}</p>
+                <h1 className={styles.foodTitle}>{recipe.name}</h1>
             </header>
-            <div className={styles.recipeInfo}>
-                <span className={styles.cuisine}>Cuisine: {recipe.cuisine}</span>
-                <span className={styles.time}>Prep time: {recipe.prepTimeMinutes}</span>
-                <span className={styles.time}>Cook time: {recipe.cookTimeMinutes}</span>
-                <span className={styles.difficulty}>Difficulty: {recipe.difficulty}</span>
+            <div className={styles.RecipeBody}>
+                <div className={styles.recipeInfo}>
+                    <div className={styles.foodInfo}>
+                        {/*food svg */}
+                        <img src={foodSVG}
+                            className={styles.icon}/>
+                            <div className={styles.labelContainer}>
+                                <p className={styles.label}>Cuisine</p>
+                                <p className={styles.labelDesc}>{recipe.cuisine}</p>
+                            </div>
+                    </div>
+                    <div className={styles.foodInfo}>
+                        {/* prep svg */}
+                        <img src={knifeSVG}
+                            className={styles.icon}/>
+                            <div className={styles.labelContainer}>
+                                <p className={styles.label}>Prep time:</p>
+                                <p className={styles.labelDesc}>{recipe.prepTimeMinutes}</p>
+                            </div>
+                    </div>
+                    <div className={styles.foodInfo}>
+                        {/* cook svg */}
+                        <img src={cookSVG}
+                            className={styles.icon}/>
+                            <div className={styles.labelContainer}>
+                                <p className={styles.label}>Cook time: </p>
+                                <p className={styles.labelDesc}>{recipe.cookTimeMinutes}</p>
+                            </div>
+                    </div>
+                    <div className={styles.foodInfo}>
+                        {/* Difficulty */}
+                        <img src={starSVG}
+                            className={styles.icon}/>
+                            <div>
+                                <p className={styles.label}>Difficulty</p>
+                                <p className={styles.labelDesc}>{recipe.difficulty}</p>
+                            </div>
+                    </div>
+                </div>
+                <div className={styles.recipeIngredients}>
+                    
+                </div>
             </div>
         </div>
     );

@@ -1,0 +1,28 @@
+.recipeHeader::before{
+    background-image: url('../img/kitchen.jpg');
+    background-position: -2em -20em;
+}
+
+.RecipeBody{
+    padding: 1.2em;
+}
+
+.recipeInfo{
+    display: flex;
+    gap: 3em;
+
+}
+
+.foodInfo{
+    display: flex;
+    gap: 1.2em;
+}
+
+.icon{
+    width: 2em;
+    height: 2em;
+    align-self: center;
+    background-color: #0a61201c;
+    padding: 0.5em;
+    border-radius: 50%;
+}
