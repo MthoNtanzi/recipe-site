@@ -6,7 +6,9 @@ import { fetchRecipeById } from '../services/api';
 import cookSVG from '../assets/img/cook.svg';
 import foodSVG from '../assets/img/food.svg';
 import knifeSVG from '../assets/img/knife.svg';
+import peopleSVG from '../assets/img/people.svg';
 import starSVG from '../assets/img/star.svg';
+import saladSVG from '../assets/img/salad.svg';
 
 export const RecipePage = () => {
     const { id } = useParams();
@@ -72,17 +74,42 @@ export const RecipePage = () => {
                             </div>
                     </div>
                     <div className={styles.foodInfo}>
+                        {/* people svg */}
+                        <img src={peopleSVG}
+                            className={styles.icon}/>
+                            <div className={styles.labelContainer}>
+                                <p className={styles.label}>Serving: </p>
+                                <p className={styles.labelDesc}>{recipe.servings}</p>
+                            </div>
+                    </div>
+                    <div className={styles.foodInfo}>
                         {/* Difficulty */}
                         <img src={starSVG}
                             className={styles.icon}/>
-                            <div>
+                            <div className={styles.labelContainer}>
                                 <p className={styles.label}>Difficulty</p>
                                 <p className={styles.labelDesc}>{recipe.difficulty}</p>
                             </div>
                     </div>
                 </div>
-                <div className={styles.recipeIngredients}>
-                    
+                <div className={styles.ingredientsAndImage}>
+                    <div className={styles.recipeIngredients}>
+                        <h2>Ingredients</h2>
+                        <ul className={styles.ingredientsList}>
+                            {recipe.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <img src={recipe.image} className={styles.recipeImage}/>
+                </div>
+                <div className={styles.cookingInstruction}>
+                    <h2>Cooking <span className={styles.instructionSpan}>Instructions</span><img className={styles.saladImg} src={saladSVG}/></h2>
+                    <ul className={styles.instructionsList}>
+                        {recipe.instructions.map((step, index) => (
+                            <li className={styles.instructionStep} key={index}><span className={styles.stepCount}>{index+1}</span> {step}</li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>
