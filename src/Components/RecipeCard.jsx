@@ -5,7 +5,8 @@ export function RecipeCard({ recipe }) {
     const totalTime = recipe.prepTimeMinutes + recipe.cookTimeMinutes;
 
     return (
-        <div className={styles.foodCard}>
+        <Link to={`/recipe/${recipe.id}`} className={styles.foodCard}>
+            
             {/* food image */}
             <h1 className={styles.foodTitle}>{recipe.name}</h1>
             <img
@@ -18,7 +19,7 @@ export function RecipeCard({ recipe }) {
             <p className={styles.cuisine}>{recipe.cuisine}</p>
             <p className={styles.difficulty}>{recipe.difficulty}</p>
             <Link to={`/recipe/${recipe.id}`} className={styles.fullRecipeBtn}>See Full Recipe</Link>
-        </div>
+        </Link>
     )
 }
 

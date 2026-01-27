@@ -8,6 +8,8 @@
     width: 250px;
     min-height: 16em;
     display: flex;
+    text-decoration: none;
+    color: #000000;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 12px;
@@ -55,4 +57,10 @@
     transition: cubic-bezier(0.23, 1, 0.320, 1) 1s;
     background-color: #0a6120;
     border: 1px solid #0a6120;
+}
+
+@media (max-width: 768px){
+    .foodCard{
+     flex-grow: 1;
+    }
 }

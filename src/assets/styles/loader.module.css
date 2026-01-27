@@ -1,6 +1,6 @@
 .loading {
     display: flex;
-    min-height: 80dvh;
+    margin-top: 5em;
     justify-content: center;
     align-items: center;
     flex-direction: column;
