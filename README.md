@@ -1,4 +1,4 @@
-# 🍽️ Recipe Site Red
+# 🍽️ Recipe Site
 
 A simple and modern recipe web app built with React and deployed on Vercel. The app fetches and displays recipes from the public **dummyjson.com Recipes API**, allowing users to browse recipes on the homepage and view full details on a dedicated recipe page.
 
