@@ -18,7 +18,7 @@ export function RecipeCard({ recipe }) {
             <p className={styles.time}>Cooking time: {totalTime} mins</p>
             <p className={styles.cuisine}>{recipe.cuisine}</p>
             <p className={styles.difficulty}>{recipe.difficulty}</p>
-            <Link to={`/recipe/${recipe.id}`} className={styles.fullRecipeBtn}>See Full Recipe</Link>
+            <span className={styles.fullRecipeBtn}>See Full Recipe</span>
         </Link>
     )
 }
