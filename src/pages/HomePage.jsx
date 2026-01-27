@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import styles from '../assets/styles/home.module.css'
 import RecipeCard from "../Components/RecipeCard";
 import { Loader } from "../Components/Loader";
-import { fetchAllRecipes, getAllTags, searchRecipes } from "../services/api";
+import { Error } from "../Components/Error";
+import RecipeNotFound from "../Components/RecipeNotFound";
+import { fetchAllRecipes, searchRecipes } from "../services/api";
 
 const HomePage =()=> {
     const [recipes, setRecipes] = useState([]);
@@ -11,8 +13,6 @@ const HomePage =()=> {
     const [searchLoading, setSearchLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedTag, setSelectedTag] = useState('all');
-    const [availableTags, setAvailableTags] = useState([]);
 
     useEffect(() => {
         const loadRecipes = async () => {
@@ -21,12 +21,8 @@ const HomePage =()=> {
                 const recipesData = await fetchAllRecipes();
                 setRecipes(recipesData);
                 setFilteredRecipes(recipesData);
-
-                const tags = await getAllTags();
-                setAvailableTags(tags);
             } catch (err) {
                 setError(err.message);
-                console.error("Error loading recipes", err);
             } finally {
                 setLoading(false);
             }
@@ -36,7 +32,6 @@ const HomePage =()=> {
     }, []);
 
     const tagClick = (tag) =>{
-        setSelectedTag(tag);
         setSearchQuery("");
 
         if(tag === 'all'){
@@ -58,7 +53,6 @@ const HomePage =()=> {
     const handleSearch = async () => {
         if(searchQuery.trim() === ''){
             setFilteredRecipes(recipes);
-            setSelectedTag('all');
             return
         }
         
@@ -66,9 +60,7 @@ const HomePage =()=> {
         try{
             const data = await searchRecipes(searchQuery);
             setFilteredRecipes(data);
-            setSelectedTag('all');
         }catch(error){
-            console.error("Search error:", error);
             setError(error.message);
         }finally{
             setSearchLoading(false)
@@ -76,12 +68,12 @@ const HomePage =()=> {
     }
 
     if (loading) {
-        return <div className={styles.loading}><span className={styles.loader}></span>Loading recipes...</div>;
+        return <Loader />;
     }
 
 
     if (error) {
-        return <div className={styles.error}>Error: {error}</div>;
+        return <Error error={ error}/>;
     }
 
     return(
@@ -100,32 +92,35 @@ const HomePage =()=> {
             </header>
 
             {/* Recipes */}
-            {
-                searchLoading ? <Loader/> :
+            
+                
                 
             
             <div className={styles.recipes}>
                 <div className={styles.tags}>
+                    <button className={styles.foodTags} onClick={()=>tagClick('all')}>All</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Beef')}>Beef</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Chicken')}>Chicken</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Pasta')}>Pasta</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Pizza')}>Pizza</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Asian')}>Asian</button>
                     <button className={styles.foodTags} onClick={()=>tagClick('Salad')}>Salad</button>
-                    <button className={styles.foodTags} onClick={()=>tagClick('all')}>All</button>
                 </div>
                 {/* Recipe Cards Go here */}
+                {searchLoading ? <Loader/> :
                 <div className={styles.foodCardContainer}>
                     {
+                                filteredRecipes.length === 0 ? (<RecipeNotFound recipe={searchQuery}/>):(
                         filteredRecipes.map(recipe => (
                             <RecipeCard key={recipe.id} recipe={recipe} /> 
 
                         ))
+                        )
                     }
-                </div>
+                </div>}
 
                 
-            </div>}
+            </div>
         </main>
     )
 }

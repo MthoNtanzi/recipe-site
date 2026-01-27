@@ -8,7 +8,6 @@ export const fetchAllRecipes = async () => {
         }
 
         const result = await response.json();
-        console.log(result);
         return result.recipes;
     } catch (error) {
         console.error(`Error: ${error.message}`);

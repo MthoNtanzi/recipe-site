@@ -1,0 +1,22 @@
+.errorHandling {
+    display: flex;
+    min-height: 80dvh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.noFood{
+    width: 150px;
+    height: 150px;
+}
+
+.recipeNotFoundText{
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.tryAgain{
+    font-size: larger;
+    font-weight: 400;
+}

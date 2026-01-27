@@ -1,6 +1,7 @@
 header{
     position: relative;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -64,6 +65,10 @@ header::before{
 .tags{
     padding: 1.5em;
     border-bottom: 1px solid black;
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .foodTags{
@@ -100,4 +105,23 @@ header::before{
     min-height: 100dvh;
 
     font-size: x-large;
+}
+
+/* Scrollbar styling */
+.tags::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tags::-webkit-scrollbar-track {
+    background: #0a61201c;
+    border-radius: 4px;
+}
+
+.tags::-webkit-scrollbar-thumb {
+    background: #0a6120;
+    border-radius: 4px;
+}
+
+.tags::-webkit-scrollbar-thumb:hover {
+    background: #0a6120;
 }
