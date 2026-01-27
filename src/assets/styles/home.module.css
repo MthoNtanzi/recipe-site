@@ -88,7 +88,7 @@ header::before{
 
 /* Food Card */
 .foodCardContainer{
-    padding: 2em;
+    padding: 1em;
     display: flex;
     flex-wrap: wrap;
     

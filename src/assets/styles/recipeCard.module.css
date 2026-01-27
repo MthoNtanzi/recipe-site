@@ -18,6 +18,10 @@
 .foodCard:hover{
     background-color: #0a61201c;
     transition: ease-in 0.4s;
+    p{
+    color: #fff;
+    background-color: #0a6120;
+}
 }
 
 .foodTitle{
@@ -38,7 +42,10 @@
 }
 
 .foodCard p{
-    margin: 0.5em;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 8px;
+    background-color: #f7f7f7;
 }
 
 .fullRecipeBtn{
