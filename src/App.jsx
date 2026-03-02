@@ -4,7 +4,7 @@ import { RecipePage } from "./pages/RecipePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import './App.css'
 
-function app() {
+function App() {
   return(
     <Router>
       <Routes>
@@ -15,4 +15,4 @@ function app() {
   )
 }
 
-export default app;
+export default App;
