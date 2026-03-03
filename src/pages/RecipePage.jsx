@@ -29,31 +29,50 @@ export const RecipePage = () => {
             url: window.location.href,
         };
 
-        const canUseShare =
-            navigator.share &&
-            navigator.canShare &&
-            navigator.canShare(shareData);
-
-        if (canUseShare) {
+        if (navigator.share) {
             try {
-            await navigator.share(shareData);
+                await navigator.share(shareData);
             } catch (err) {
-            if (err.name !== "AbortError") fallbackCopy(); // share existed but failed
+                // Only fallback if it's not a user cancellation
+                if (err.name !== "AbortError" && err.name !== "CancelError") {
+                    fallbackCopy();
+                }
             }
         } else {
             fallbackCopy();
         }
-        };
+    };
 
-        const fallbackCopy = async () => {
+    const fallbackCopy = async () => {
         try {
             await navigator.clipboard.writeText(window.location.href);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
             console.error("Clipboard failed:", err);
+            fallbackCopyLegacy();
         }
-        };
+    };
+
+    const fallbackCopyLegacy = () => {
+        const textarea = document.createElement('textarea');
+        textarea.value = window.location.href;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        
+        try {
+            document.execCommand('copy');
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Legacy copy failed:", err);
+            alert('Press Ctrl+C to copy the URL');
+        }
+        
+        document.body.removeChild(textarea);
+    };
 
     useEffect(() => {
         const loadRecipe = async () => {
