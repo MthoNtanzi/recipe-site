@@ -23,30 +23,37 @@ export const RecipePage = () => {
     const { isBookmarked, toggleBookmark } = useBookmarks();
 
     const handleShare = async () => {
-    const shareData = {
-    title: recipe.name,
-    text: `Check out this recipe for ${recipe.name}!`,
-    url: window.location.href,
-  };
+        const shareData = {
+            title: recipe.name,
+            text: `Check out this recipe for ${recipe.name}!`,
+            url: window.location.href,
+        };
 
-  if (navigator.share && navigator.canShare(shareData)) {
-    // Mobile + supported desktop browsers → native share sheet
-    try {
-      await navigator.share(shareData);
-    } catch (err) {
-      if (err.name !== "AbortError") console.error(err); // user cancelled = AbortError, ignore it
-    }
-  } else {
-    // Fallback → copy link to clipboard
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Clipboard failed:", err);
-    }
-  }
-};
+        const canUseShare =
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare(shareData);
+
+        if (canUseShare) {
+            try {
+            await navigator.share(shareData);
+            } catch (err) {
+            if (err.name !== "AbortError") fallbackCopy(); // share existed but failed
+            }
+        } else {
+            fallbackCopy();
+        }
+        };
+
+        const fallbackCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Clipboard failed:", err);
+        }
+        };
 
     useEffect(() => {
         const loadRecipe = async () => {
