@@ -22,6 +22,11 @@ export const RecipePage = () => {
     const [copied, setCopied] = useState(false);
     const { isBookmarked, toggleBookmark } = useBookmarks();
 
+    const showCopied = () => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     const handleShare = async () => {
     const shareData = {
         title: recipe.name,
@@ -35,7 +40,7 @@ export const RecipePage = () => {
     // Proper Web Share detection
     if (
         isSecure &&
-        navigator.share &&
+        typeof navigator.share === "function" &&
         (!navigator.canShare || navigator.canShare(shareData))
     ) {
         try {
@@ -59,34 +64,50 @@ export const RecipePage = () => {
 };
 
     const fallbackCopy = async () => {
+        const textToCopy = window.location.href;
+
+    if (window.isSecureContext && navigator.clipboard) {
         try {
-            await navigator.clipboard.writeText(window.location.href);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
+            await navigator.clipboard.writeText(textToCopy);
+            showCopied();
+            return;
         } catch (err) {
-            console.error("Clipboard failed:", err);
-            fallbackCopyLegacy();
+            console.warn("Modern clipboard failed:", err);
         }
+    }
+
+    fallbackCopyLegacy();
     };
 
     const fallbackCopyLegacy = () => {
-        const textarea = document.createElement('textarea');
-        textarea.value = window.location.href;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
+        const textToCopy = window.location.href;
+
+        const textarea = document.createElement("textarea");
+        textarea.value = textToCopy;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-999999px";
+
         document.body.appendChild(textarea);
+        textarea.focus();
         textarea.select();
-        
+
         try {
-            document.execCommand('copy');
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
+            const successful = document.execCommand("copy");
+
+            if (successful) {
+                showCopied();
+            } else {
+                manualCopyPrompt(textToCopy);
+            }
         } catch (err) {
-            console.error("Legacy copy failed:", err);
-            alert('Press Ctrl+C to copy the URL');
+            manualCopyPrompt(textToCopy);
         }
-        
+
         document.body.removeChild(textarea);
+    };
+
+    const manualCopyPrompt = (text) => {
+        prompt("Copy this link:", text);
     };
 
     useEffect(() => {
