@@ -8,7 +8,7 @@
 }
 
 .scrolled {
-  border-color: #ebebeb;
+  border-color: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.09);
 }
 
@@ -27,7 +27,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #111;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -41,7 +41,7 @@
 .link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
@@ -55,12 +55,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #111;
+  background: #fff;
   transition: width 0.2s ease;
 }
 
 .link:hover {
-  color: #111;
+  color: #fff;
 }
 
 .link:hover::after,
@@ -69,7 +69,8 @@
 }
 
 .link.active {
-  color: #111;
+  color: #fff;
+  font-weight: 700;
 }
 
 /* Hamburger */
@@ -90,7 +91,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #111;
+  background: #fff;
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease;
   transform-origin: center;
@@ -121,16 +122,16 @@
 .mobileOpen {
   max-height: 200px;
   padding: 0.75rem 1.5rem 1rem;
-  border-color: #ebebeb;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .mobileLink {
   font-size: 1rem;
   font-weight: 500;
-  color: #555;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   padding: 0.6rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   transition: color 0.15s;
 }
 
@@ -140,7 +141,7 @@
 
 .mobileLink:hover,
 .mobileLink.active {
-  color: #111;
+  color: #fff;
 }
 
 /* Responsive */
