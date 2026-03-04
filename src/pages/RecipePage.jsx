@@ -228,6 +228,12 @@ export const RecipePage = () => {
                     </ul>
                 </div>
             </div>
+
+            {copied && (
+                <div className={styles.toast}>
+                    Link copied to clipboard
+                </div>
+            )}
         </div>
     );
 }
