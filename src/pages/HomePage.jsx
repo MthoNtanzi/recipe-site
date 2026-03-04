@@ -78,7 +78,7 @@ const HomePage =()=> {
 
     return(
         <main>
-            <header className={styles.HeroSection}>
+            <header className={ `${styles.HeroSection} ${styles.mainHeader}`}>
                 <h1>Savoury Recipes</h1>
                 <p>Discover {recipes.length} amazing recipes from around the world</p>
 

@@ -16,7 +16,7 @@ export default function NavBar() {
   const handleNavClick = () => setMenuOpen(false);
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+    <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.inner}>
 
         {/* Logo */}
@@ -79,6 +79,6 @@ export default function NavBar() {
           Bookmarks
         </NavLink>
       </nav>
-    </header>
+    </div>
   );
 }

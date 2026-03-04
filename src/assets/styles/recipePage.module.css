@@ -1,6 +1,5 @@
 .recipeHeader::before{
     background-image: url('../img/kitchen.jpg');
-    /* background-position: -2em -20em; */
 }
 
 .RecipeBody{
@@ -130,7 +129,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.4rem;
+  padding: 0.2rem;
   border-radius: 50%;
   transition: transform 0.15s ease, color 0.15s ease;
   color: #e3e3e3;
@@ -183,7 +182,7 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 9999;
 
-    animation: fadeInOut 2s ease forwards;
+    animation: fadeInOut 3s ease forwards;
 }
 
 @keyframes fadeInOut {
