@@ -23,25 +23,40 @@ export const RecipePage = () => {
     const { isBookmarked, toggleBookmark } = useBookmarks();
 
     const handleShare = async () => {
-        const shareData = {
-            title: recipe.name,
-            text: `Check out this recipe for ${recipe.name}!`,
-            url: window.location.href,
-        };
-
-        if (navigator.share) {
-            try {
-                await navigator.share(shareData);
-            } catch (err) {
-                // Only fallback if it's not a user cancellation
-                if (err.name !== "AbortError" && err.name !== "CancelError") {
-                    fallbackCopy();
-                }
-            }
-        } else {
-            fallbackCopy();
-        }
+    const shareData = {
+        title: recipe.name,
+        text: `Check out this recipe for ${recipe.name}!`,
+        url: window.location.href,
     };
+
+    // Must be HTTPS for share + clipboard
+    const isSecure = window.isSecureContext;
+
+    // Proper Web Share detection
+    if (
+        isSecure &&
+        navigator.share &&
+        (!navigator.canShare || navigator.canShare(shareData))
+    ) {
+        try {
+            await navigator.share(shareData);
+            return;
+        } catch (err) {
+            // Ignore user cancellation
+            if (
+                err.name === "AbortError" ||
+                err.name === "CancelError"
+            ) {
+                return;
+            }
+
+            console.warn("Share failed, using fallback:", err);
+        }
+    }
+
+    // Fallback
+    fallbackCopy();
+};
 
     const fallbackCopy = async () => {
         try {
